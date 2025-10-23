@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/mlops-quality-project
+    repoURL: https://github.com/Anti4ris98/Mlops-project.git
     targetRevision: HEAD
     path: helm
   destination:

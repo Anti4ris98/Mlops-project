@@ -70,6 +70,11 @@ else {
     Write-Host "✅ ArgoCD already installed" -ForegroundColor Green
 }
 
+# Deploy ArgoCD Application
+Write-Host "📦 Deploying ArgoCD Application..." -ForegroundColor Cyan
+kubectl apply -f argocd/application.yaml
+Write-Host "✅ ArgoCD Application deployed" -ForegroundColor Green
+
 # 8. Deploy application
 Write-Host "`n🚀 Deploying application Helm chart..." -ForegroundColor Cyan
 helm upgrade --install aiops-inference ./helm -n aiops --create-namespace --wait

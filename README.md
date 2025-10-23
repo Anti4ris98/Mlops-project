@@ -113,6 +113,12 @@ E:\Mlops-project\
 ```powershell
 kubectl get pods -n aiops
 kubectl logs -f deployment/aiops-inference -n aiops
+
+# Check ArgoCD status
+.\check_argocd.ps1
+
+# View ArgoCD applications
+kubectl get applications -n argocd
 ```
 
 ### Retrain Model
