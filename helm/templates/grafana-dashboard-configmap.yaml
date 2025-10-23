@@ -1,0 +1,30 @@
+{{- if .Values.grafana.dashboard.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-dashboard
+  labels:
+    app: {{ .Chart.Name }}
+    grafana_dashboard: "1"
+data:
+  mlops-dashboard.json: |
+    {
+      "dashboard": {
+        "title": "MLOps Inference Service",
+        "panels": [
+          {
+            "title": "Prediction Requests",
+            "targets": [{"expr": "rate(prediction_requests_total[5m])"}]
+          },
+          {
+            "title": "Request Latency",
+            "targets": [{"expr": "histogram_quantile(0.95, rate(prediction_latency_seconds_bucket[5m]))"}]
+          },
+          {
+            "title": "Drift Events",
+            "targets": [{"expr": "increase(drift_events_total[1h])"}]
+          }
+        ]
+      }
+    }
+{{- end }}

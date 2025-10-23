@@ -1,0 +1,61 @@
+replicaCount: 2
+
+image:
+  repository: aiops-inference
+  tag: latest
+  pullPolicy: Never  # For local Minikube, never pull from remote
+
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  MODEL_PATH: "/app/model/model.pkl"
+  REFERENCE_PATH: "/app/model/reference_data.pkl"
+  DRIFT_THRESHOLD: "0.05"
+
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 8000
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+serviceMonitor:
+  enabled: true
+  interval: 30s
+  scrapeTimeout: 10s
+
+promtail:
+  enabled: true
+
+grafana:
+  dashboard:
+    enabled: true

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: aiops-inference
+description: MLOps inference service with drift detection and monitoring
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - mlops
+  - inference
+  - drift-detection
+maintainers:
+  - name: MLOps Team

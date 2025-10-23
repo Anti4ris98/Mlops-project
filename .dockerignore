@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.pytest_cache
+.coverage
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+README.md
+QUICKSTART.md
+*.md
+
+# CI/CD
+.gitlab-ci.yml
+
+# Kubernetes configs (not needed in container)
+helm/
+argocd/
+prometheus/
+grafana/
+
+# Scripts (not needed in container)
+run_local.sh
+run_local.ps1
+test_api.ps1
+Makefile
+
+# OS
+.DS_Store
+Thumbs.db
